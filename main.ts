@@ -57,11 +57,11 @@ function spawn_enemy(spawn_sprite: Sprite) {
     if (spawn_sprite.x > 80) {
         enemy.setPosition(spawn_sprite.x + 10, spawn_sprite.y)
         animation.runImageAnimation(enemy, assets.animation`mushroom left`, 100, true)
-        enemy.vx = -30
+        enemy.vx = -20
     } else {
         enemy.setPosition(spawn_sprite.x - 10, spawn_sprite.y)
         animation.runImageAnimation(enemy, assets.animation`mushroom right`, 100, true)
-        enemy.vx = 30
+        enemy.vx = 20
     }
     
     enemy.setFlag(SpriteFlag.AutoDestroy, true)
@@ -69,7 +69,7 @@ function spawn_enemy(spawn_sprite: Sprite) {
 
 function spawn_enemies() {
     for (let spawn_point of spawn_positions) {
-        if (randint(1, 200) == 1) {
+        if (randint(1, 250) == 1) {
             spawn_enemy(spawn_point)
         }
         

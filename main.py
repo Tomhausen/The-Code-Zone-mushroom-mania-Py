@@ -46,16 +46,16 @@ def spawn_enemy(spawn_sprite: Sprite):
     if spawn_sprite.x > 80:
         enemy.set_position(spawn_sprite.x + 10, spawn_sprite.y)
         animation.run_image_animation(enemy, assets.animation("mushroom left"), 100, True)
-        enemy.vx = -30
+        enemy.vx = -20
     else:
         enemy.set_position(spawn_sprite.x - 10, spawn_sprite.y)
         animation.run_image_animation(enemy, assets.animation("mushroom right"), 100, True)
-        enemy.vx = 30
+        enemy.vx = 20
     enemy.set_flag(SpriteFlag.AUTO_DESTROY, True)
 
 def spawn_enemies():
     for spawn_point in spawn_positions:
-        if randint(1, 200) == 1:
+        if randint(1, 250) == 1:
             spawn_enemy(spawn_point)
 
 def delete_duplicates(enemy, other_enemy):

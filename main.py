@@ -39,8 +39,23 @@ def new_row_spawn():
     global new_spawn_y
     if scene.camera_property(CameraProperty.BOTTOM) >= new_spawn_y:
         generate_row(new_spawn_y + 8)
+        if randint(1, 5) == 1:
+            spawn_coin()
         new_spawn_y += 16
         info.change_score_by(100)
+
+def spawn_coin():
+    coin = sprites.create(assets.animation("coin")[0], SpriteKind.food)
+    animation.run_image_animation(coin, assets.animation("coin"), 100, True)
+    coin.set_position(randint(10, 150), new_spawn_y - 8)
+    coin.z = 10
+    coin.set_flag(SpriteFlag.AUTO_DESTROY, True)
+
+def collect_coin(player, coin):
+    info.change_score_by(1000)
+    music.ba_ding.play()
+    coin.destroy()
+sprites.on_overlap(SpriteKind.player, SpriteKind.food, collect_coin)
 
 def spawn_enemy(spawn_sprite: Sprite):
     if spawn_sprite.y == 8:

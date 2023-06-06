@@ -47,12 +47,29 @@ function new_row_spawn() {
     
     if (scene.cameraProperty(CameraProperty.Bottom) >= new_spawn_y) {
         generate_row(new_spawn_y + 8)
+        if (randint(1, 5) == 1) {
+            spawn_coin()
+        }
+        
         new_spawn_y += 16
         info.changeScoreBy(100)
     }
     
 }
 
+function spawn_coin() {
+    let coin = sprites.create(assets.animation`coin`[0], SpriteKind.Food)
+    animation.runImageAnimation(coin, assets.animation`coin`, 100, true)
+    coin.setPosition(randint(10, 150), new_spawn_y - 8)
+    coin.z = 10
+    coin.setFlag(SpriteFlag.AutoDestroy, true)
+}
+
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function collect_coin(player: Sprite, coin: Sprite) {
+    info.changeScoreBy(1000)
+    music.baDing.play()
+    coin.destroy()
+})
 function spawn_enemy(spawn_sprite: Sprite) {
     if (spawn_sprite.y == 8) {
         return

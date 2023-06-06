@@ -27,15 +27,20 @@ function generate_row(y: number) {
         tile.setFlag(SpriteFlag.AutoDestroy, true)
         row.push(tile)
     }
+    if (randint(1, 10) == 1) {
+        for (let placed_tile of row) {
+            placed_tile.setImage(assets.tile`off path`)
+        }
+        return
+    }
+    
     if (randint(1, 2) == 1) {
         spawn_positions.push(row.shift())
     } else {
         spawn_positions.push(row.pop())
     }
     
-    for (let i = 0; i < randint(0, 3); i++) {
-        spawn_enemy(spawn_positions[spawn_positions.length - 1])
-    }
+    spawn_enemy(spawn_positions[spawn_positions.length - 1])
 }
 
 function new_row_spawn() {

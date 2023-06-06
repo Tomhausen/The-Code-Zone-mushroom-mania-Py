@@ -25,12 +25,15 @@ def generate_row(y):
         tile.z = -10
         tile.set_flag(SpriteFlag.AUTO_DESTROY, True)
         row.append(tile)
+    if randint(1, 10) == 1:
+        for placed_tile in row:
+            placed_tile.set_image(assets.tile("off path"))
+        return
     if randint(1, 2) == 1:
         spawn_positions.append(row.shift())
     else:
         spawn_positions.append(row.pop())
-    for i in range(randint(0, 3)):
-        spawn_enemy(spawn_positions[len(spawn_positions) - 1])
+    spawn_enemy(spawn_positions[len(spawn_positions) - 1])
 
 def new_row_spawn():
     global new_spawn_y

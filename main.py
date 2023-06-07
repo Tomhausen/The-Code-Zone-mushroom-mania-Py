@@ -115,7 +115,3 @@ def tick():
     new_row_spawn()
     spawn_enemies()
 game.on_update(tick)
-
-
-# coins
-# water traps

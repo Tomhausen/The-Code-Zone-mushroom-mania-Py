@@ -1,10 +1,11 @@
 @namespace
 class SpriteKind:
     floor = SpriteKind.create()
+    trap = SpriteKind.create()
 
 # sprites
 witch = sprites.create(assets.image("witch"), SpriteKind.player)
-witch.y = 8
+witch.set_position(72, 8)
 witch.set_stay_in_screen(True)
 
 # variables
@@ -16,6 +17,16 @@ def setup():
     for y in range(8, 121, 16):
         generate_row(y)
 setup()
+
+def generate_traps(tiles_in_row: List[Sprite]):
+    random_num = randint(0, 1)
+    for i in range(len(tiles_in_row)):
+        tile = tiles_in_row[i]
+        if i % 2 == random_num:
+            tile.set_image(assets.tile("off path"))
+        else:
+            tile.set_image(assets.tile("lava"))
+            tile.set_kind(SpriteKind.trap)
 
 def generate_row(y):
     row: List[Sprite] = []
@@ -29,6 +40,9 @@ def generate_row(y):
         for placed_tile in row:
             placed_tile.set_image(assets.tile("off path"))
         return
+    if randint(1, 10) == 1 and y != 8:
+        generate_traps(row)
+        return
     if randint(1, 2) == 1:
         spawn_positions.append(row.shift())
     else:
@@ -39,23 +53,8 @@ def new_row_spawn():
     global new_spawn_y
     if scene.camera_property(CameraProperty.BOTTOM) >= new_spawn_y:
         generate_row(new_spawn_y + 8)
-        if randint(1, 5) == 1:
-            spawn_coin()
         new_spawn_y += 16
         info.change_score_by(100)
-
-def spawn_coin():
-    coin = sprites.create(assets.animation("coin")[0], SpriteKind.food)
-    animation.run_image_animation(coin, assets.animation("coin"), 100, True)
-    coin.set_position(randint(10, 150), new_spawn_y - 8)
-    coin.z = 10
-    coin.set_flag(SpriteFlag.AUTO_DESTROY, True)
-
-def collect_coin(player, coin):
-    info.change_score_by(1000)
-    music.ba_ding.play()
-    coin.destroy()
-sprites.on_overlap(SpriteKind.player, SpriteKind.food, collect_coin)
 
 def spawn_enemy(spawn_sprite: Sprite):
     if spawn_sprite.y == 8:
@@ -83,6 +82,7 @@ sprites.on_overlap(SpriteKind.enemy, SpriteKind.enemy, delete_duplicates)
 def lose(player, enemy):
     game.over(False)
 sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, lose)
+sprites.on_overlap(SpriteKind.player, SpriteKind.trap, lose)
 
 def move(anim: List[image], x_change, y_change):
     animation.run_image_animation(witch, anim, 100, False)

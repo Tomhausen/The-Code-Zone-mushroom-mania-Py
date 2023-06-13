@@ -22,44 +22,6 @@ namespace myImages {
 . . . . c b 5 5 5 5 b c . . . . 
 . . . . . f f f f f f . . . . . 
 `;
-            case "image4":
-            case "witch left":return img`
-. . . . . . . c c . . . . . . . 
-. . . . . . c 5 c . . . . . . . 
-. . . . c c 5 5 5 c c c . . . . 
-. . c c c c 5 5 5 5 c b c c . . 
-. c b b 5 b 5 5 5 5 b 5 b b c . 
-. c b 5 5 b b 5 5 b b 5 5 b c . 
-. . c 5 5 5 b b b b 5 5 5 f . . 
-. . . f 5 5 5 5 5 5 5 5 f f . . 
-. . . . f e e e f b e e f f . . 
-. . . . f e b b f 1 b f f f . . 
-. . . . f b b b b b b f f . . . 
-. . . . . f e e e e f e e . . . 
-. . . . . f 5 b b e b b e . . . 
-. . . . f 5 5 5 5 e b b e . . . 
-. . . . c b 5 5 5 5 e e . . . . 
-. . . . . f f f f f f . . . . . 
-`;
-            case "image5":
-            case "witch right":return img`
-. . . . . . . c c . . . . . . . 
-. . . . . . . c 5 c . . . . . . 
-. . . . c c c 5 5 5 c c . . . . 
-. . c c b c 5 5 5 5 c c c c . . 
-. c b b 5 b 5 5 5 5 b 5 b b c . 
-. c b 5 5 b b 5 5 b b 5 5 b c . 
-. . f 5 5 5 b b b b 5 5 5 c . . 
-. . f f 5 5 5 5 5 5 5 5 f . . . 
-. . f f e e b f e e e f . . . . 
-. . f f f b 1 f b b e f . . . . 
-. . . f f b b b b b b f . . . . 
-. . . e e f e e e e f . . . . . 
-. . . e b b e b b 5 f . . . . . 
-. . . e b b e 5 5 5 5 f . . . . 
-. . . . e e 5 5 5 5 b c . . . . 
-. . . . . f f f f f f . . . . . 
-`;
             case "image3":
             case "mushroom":return img`
 . . . . b b b b . . . . . . . . 
@@ -485,62 +447,6 @@ f f b b c b d d d d d d d c . .
 . . . e b b e 5 5 5 5 f . . . . 
 . . . . e e 5 5 5 5 b c . . . . 
 . . . . . f f f f f f . . . . . 
-`];
-            case "coin":
-            case "anim6":return [img`
-. . b b b b . . 
-. b 5 5 5 5 b . 
-b 5 d 3 3 d 5 b 
-b 5 3 5 5 1 5 b 
-c 5 3 5 5 1 d c 
-c d d 1 1 d d c 
-. f d d d d f . 
-. . f f f f . . 
-`, img`
-. . b b b . . . 
-. b 5 5 5 b . . 
-b 5 d 3 d 5 b . 
-b 5 3 5 1 5 b . 
-c 5 3 5 1 d c . 
-c 5 d 1 d d c . 
-. f d d d f . . 
-. . f f f . . . 
-`, img`
-. . . b b . . . 
-. . b 5 5 b . . 
-. b 5 d 1 5 b . 
-. b 5 3 1 5 b . 
-. c 5 3 1 d c . 
-. c 5 1 d d c . 
-. . f d d f . . 
-. . . f f . . . 
-`, img`
-. . . b b . . . 
-. . b 5 5 b . . 
-. . b 1 1 b . . 
-. . b 5 5 b . . 
-. . b d d b . . 
-. . c d d c . . 
-. . c 3 3 c . . 
-. . . f f . . . 
-`, img`
-. . . b b . . . 
-. . b 5 5 b . . 
-. b 5 1 d 5 b . 
-. b 5 1 3 5 b . 
-. c d 1 3 5 c . 
-. c d d 1 5 c . 
-. . f d d f . . 
-. . . f f . . . 
-`, img`
-. . . b b b . . 
-. . b 5 5 5 b . 
-. b 5 d 3 d 5 b 
-. b 5 1 5 3 5 b 
-. c d 1 5 3 5 c 
-. c d d 1 d 5 c 
-. . f d d d f . 
-. . . f f f . . 
 `];
         }
         return null;
